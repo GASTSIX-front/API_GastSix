@@ -1,4 +1,4 @@
-package com.senai.apivsconnect.services;
+package com.api.gastapi.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

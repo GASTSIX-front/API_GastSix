@@ -1,6 +1,6 @@
-package com.senai.apivsconnect.services;
+package com.api.gastapi.services;
 
-import com.senai.apivsconnect.repositories.UsuarioRepository;
+import com.api.gastapi.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,6 +19,6 @@ public class AuthService implements UserDetailsService {
         if (usuario == null) {
             throw new UsernameNotFoundException("Usuario não encontrado");
         }
-        return usuario;
+        return (UserDetails) usuario;
     }
 }

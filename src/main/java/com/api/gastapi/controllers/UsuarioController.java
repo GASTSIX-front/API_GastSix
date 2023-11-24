@@ -3,7 +3,7 @@ package com.api.gastapi.controllers;
 import com.api.gastapi.dtos.UsuarioDto;
 import com.api.gastapi.models.UsuarioModel;
 import com.api.gastapi.repositories.UsuarioRepository;
-import com.senai.apivsconnect.services.FileUploadService;
+import com.api.gastapi.services.FileUploadService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

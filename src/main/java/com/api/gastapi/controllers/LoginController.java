@@ -1,9 +1,9 @@
 package com.api.gastapi.controllers;
 
 import com.api.gastapi.dtos.LoginDto;
-import com.api.gastapit.dtos.TokenDto;
+import com.api.gastapi.dtos.TokenDto;
 import com.api.gastapi.models.UsuarioModel;
-import com.senai.apivsconnect.services.TokenService;
+import com.api.gastapi.services.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
