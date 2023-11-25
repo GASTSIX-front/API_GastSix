@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class PedidoModel {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id_pedido;
     private String observacoes;
     private String usuario_operador;
