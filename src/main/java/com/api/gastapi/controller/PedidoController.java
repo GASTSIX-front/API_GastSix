@@ -60,6 +60,6 @@ public class PedidoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario não encontrado");
         }
         repository.deleteById(id_pedido);
-        return ResponseEntity.status(HttpStatus.OK).body("Usuario deletado com sucesso!");
+        return ResponseEntity.status(HttpStatus.OK).body("Pedido deletado com sucesso!");
     }
 }
