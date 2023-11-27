@@ -15,18 +15,23 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+//notations @RestController @RequestMapping(o endereço que vc vai acessar, como vc se comunica com o controller)
 @RestController
 @RequestMapping(value = "/fornecedor", produces = {"application/json"})
 public class FornecedorController {
+    //fazer a primeira injecão de dependência @Autowired(classe e o nome);fazer o import do Autowired
     @Autowired
     FornecedorRepository fornecedorRepository;
-
+//fazer o primeiro método que traz a lista do que você está fazendo(@getMapping)
     @GetMapping
+    //responseEntity é o tipo de resposta, get retorna uma lista;
     public ResponseEntity<List<FornecedorModel>> listarFornecedor(){
-        return ResponseEntity.status(HttpStatus.OK).body(fornecedorRepository.findAll());
+        //execução dentro do return responseEntity(resposta),código status OK se tiver tudo certo, .body(class e o metodo);
+        return ResponseEntity.status(HttpStatus.OK).body(fornecedorRepository.findAll());//findAll pega tudo da tabela que está sendo executada;
+        //sempre executar no terminal após o termino do método.
     }
 
-    @GetMapping("/idFornecedor")
+    @GetMapping("/{idFornecedor}")
     public ResponseEntity<Object> buscarFornecedor(@PathVariable(value = "idFornecedor") UUID id){
        Optional<FornecedorModel> fornecedorBuscado = fornecedorRepository.findById(id);
 
@@ -36,14 +41,9 @@ public class FornecedorController {
         return ResponseEntity.status(HttpStatus.OK).body(fornecedorBuscado.get());
     }
 
-    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    @Operation(summary = "Método para cadastrar um fornecedor",method = "POST")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Cadastro foi efetuado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Parametros invalidos")
-    })
-    public ResponseEntity<Object> criarFornecedor(@ModelAttribute @Valid FornecedorDto fornecedorDto){
-        if (fornecedorRepository.findbyEmail(fornecedorDto.email()) != null){
+    @PostMapping
+    public ResponseEntity<Object> criarFornecedor(@RequestBody FornecedorDto fornecedorDto){
+        if (fornecedorRepository.findByEmail(fornecedorDto.email()) != null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email já cadastrado");
         }
 
@@ -53,8 +53,8 @@ public class FornecedorController {
         return ResponseEntity.status(HttpStatus.CREATED).body(fornecedorRepository.save(novoFornecedor));
     }
 
-    @PutMapping(value = "/{idFornecedor}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<Object> editarFornecedor(@PathVariable(value = "idFornecedor")UUID id, ModelAttribute @Valid FornecedorDto fornecedorDto){
+    @PutMapping(value = "/{idFornecedor}")
+    public ResponseEntity<Object> editarFornecedor(@PathVariable(value = "idFornecedor")UUID id, @RequestBody FornecedorDto fornecedorDto){
         Optional<FornecedorModel> fornecedorBuscado = fornecedorRepository.findById(id);
 
         if (fornecedorBuscado.isEmpty()){
@@ -67,9 +67,9 @@ public class FornecedorController {
         return ResponseEntity.status(HttpStatus.OK).body(fornecedorRepository.save(fornecedorBd));
     }
 
-    @DeleteMapping("/idFornecedor")
-    public ResponseEntity<Object> deletarFornecedor(@PathVariable(value = "idUsuario") UUID id){
-        Optional<fornecedorModel> fornecedorBuscado = fornecedorRepository.findById(id);
+    @DeleteMapping("/{idFornecedor}")
+    public ResponseEntity<Object> deletarFornecedor(@PathVariable(value = "idFornecedor") UUID id){
+        Optional<FornecedorModel> fornecedorBuscado = fornecedorRepository.findById(id);
 
         if (fornecedorBuscado.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Fornecedor não encontrado");

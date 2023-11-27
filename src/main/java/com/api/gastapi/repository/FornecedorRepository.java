@@ -6,13 +6,11 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetails;
 
-@Repository
-public interface FornecedorRepository extends  JpaRespository<FornecedorModel, UUID>{
-    UserDetails findbyEmail(String email);
+@Repository //é uma notation
+//extends JPARepository é uma herança,<tipo de dado que vai trabalhar e tipo de dado do id>
+public interface FornecedorRepository extends JpaRepository<FornecedorModel, UUID>{
 
-    void delete(fornecedorModel fornecedorModel);
-
-    Object findAll();
+    FornecedorModel findByEmail(String email);
 }
