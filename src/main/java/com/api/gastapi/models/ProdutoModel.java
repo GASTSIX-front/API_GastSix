@@ -1,4 +1,4 @@
-package models;
+package com.api.gastapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -6,16 +6,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.util.UUID;
-import java.util.List;
-
 
 @Getter
 @Setter
 @Entity
 @Table(name = "produto")
-public class ProdutoModel {
-
+public class ProdutoModel implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_produto", nullable = false)
@@ -23,8 +23,7 @@ public class ProdutoModel {
 
     private String descricao;
     private String partnumber;
-
-    @JsonIgnore
+    private String setor;
     private String codigoSAP;
-    private String url_img;
+//    private String url_img;
 }
