@@ -1,3 +1,4 @@
+/*
 package com.api.gastapi.models;
 
 public enum TipoModel {
@@ -15,3 +16,5 @@ public enum TipoModel {
         return tipo;
     }
 }
+
+ */

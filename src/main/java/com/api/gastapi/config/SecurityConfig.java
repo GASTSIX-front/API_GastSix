@@ -1,3 +1,4 @@
+/*
 package com.api.gastapi.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,3 +45,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
+
+
+ */

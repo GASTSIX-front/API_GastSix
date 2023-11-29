@@ -12,7 +12,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,8 +34,8 @@ public class UsuarioController {
     }
 
     @GetMapping("/{idUsuario}")
-    public ResponseEntity<Object> buscarUsuario(@PathVariable(value = "idUsuario") UUID id) {
-        Optional<UsuarioModel> usuarioBuscado = usuarioRepository.findById(id);
+    public ResponseEntity<Object> buscarUsuario(@PathVariable(value = "idUsuario") String matricula) {
+        Optional<UsuarioModel> usuarioBuscado = usuarioRepository.findById(matricula);
 
         if (usuarioBuscado.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario não encontrado");
@@ -43,25 +43,31 @@ public class UsuarioController {
 
         return ResponseEntity.status(HttpStatus.OK).body(usuarioBuscado.get());
     }
-    @RequestMapping
+
+
     @PostMapping
+    @Operation(summary = "Método para cadastrar um Usuário", method = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Cadastro foi efetuado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Paramatros inválidos")
+    })
     public ResponseEntity<Object> criarUsuario(@RequestBody @Valid UsuarioDto usuarioDto){
         if (usuarioRepository.findByEmail(usuarioDto.email()) != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email já cadastrado no sistema");
         }
 
-        UsuarioModel usuarioModel = new UsuarioModel();
-        BeanUtils.copyProperties(usuarioDto, usuarioModel);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(usuarioModel));
-    }
-        //Criptografa senha
-        String senhaCript = new BCryptPasswordEncoder().encode(usuarioDto.senha());
-        novoUsuario.setSenha(senhaCript);
+        UsuarioModel novoUsuario = new UsuarioModel();
+        BeanUtils.copyProperties(usuarioDto, novoUsuario);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(novoUsuario));
     }
+        //Criptografa senha
+        //String senhaCript = new BCryptPasswordEncoder().encode(usuarioDto.senha());
+        //novoUsuario.setSenha(senhaCript);
 
+        //return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(novoUsuario));
+
+    /*
     @PutMapping("/{idUsuario}")
     public ResponseEntity<Object> editarUsuario(@PathVariable(value = "idUsuario") UUID id, @RequestBody @Valid UsuarioDto usuarioDto) {
         Optional<UsuarioModel> usuarioBuscado = usuarioRepository.findById(id);
@@ -85,6 +91,8 @@ public class UsuarioController {
         usuarioRepository.delete(usuarioBuscado.get());
         return ResponseEntity.status(HttpStatus.OK).body("Usuario deletado com sucesso!");
     }
+
+     */
 }
 
 

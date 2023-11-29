@@ -18,7 +18,7 @@ public class TokenService {
     private String secret;
 
 
-
+/*
     public String gerarToken(UsuarioModel usuario){
         try{
             Algorith algoritimo = Algorithm.HMAC256(secret);
@@ -51,4 +51,5 @@ public class TokenService {
     private Instant gerarValidadeToken(){
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
     }
+ */
 }

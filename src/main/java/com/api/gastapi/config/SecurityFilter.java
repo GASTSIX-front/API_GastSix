@@ -1,3 +1,4 @@
+/*
 package com.api.gastapi.config;
 
 import com.api.gastapi.repositories.UsuarioRepository;
@@ -47,3 +48,5 @@ public class SecurityFilter extends OncePerRequestFilter {
         return authHeader.replace("Bearer ", "");
     }
 }
+
+ */

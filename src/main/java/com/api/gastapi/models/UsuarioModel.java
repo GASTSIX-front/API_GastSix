@@ -2,42 +2,38 @@ package com.api.gastapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.io.Serial;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.Date;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "usuario")
-public class UsuarioModel implements Serializable, UserDetails {
-    @Serial
-    private static final long serialVersionUID = 1L;
-
+public class UsuarioModel implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_usuario", nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "matricula", nullable = false)
+    private String matricula;
+    private String email;
+    private String cpf;
 
     private String nome;
-    private String email;
-
     @JsonIgnore
     private String senha;
-    private String endereco;
-    private String cep;
 
-    private TipoModel tipo_usuario;
+    //private TipoModel funcao;
+
+    private Date data_admissao;
 
    // private String url_img;
-
+/*
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.tipo_usuario == TipoModel.ADMIN){
@@ -86,4 +82,6 @@ public class UsuarioModel implements Serializable, UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+ */
 }
