@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +46,31 @@ public class ProdutoController {
         BeanUtils.copyProperties(dadosRecebidos, produtoModel);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produtoModel));
+    }
+
+    @PutMapping("/{idProduto}")
+    public ResponseEntity<Object> editarProduto(@PathVariable(value = "idProduto") UUID id, @RequestBody @Valid ProdutoDto produtoDto) {
+        Optional<ProdutoModel> produtoBuscado = produtoRepository.findById(id);
+
+        if (produtoBuscado.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado");
+        }
+
+        ProdutoModel produtoModel = produtoBuscado.get();
+        BeanUtils.copyProperties(produtoDto, produtoModel);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produtoModel));
+    }
+
+    @DeleteMapping("/{idProduto}")
+    public ResponseEntity<Object> deletaProduto(@PathVariable(value = "idProduto") UUID id){
+        Optional<ProdutoModel> produtoBuscado = produtoRepository.findById(id);
+
+        if (produtoBuscado.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado");
+        }
+        produtoRepository.delete(produtoBuscado.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Produto deletado com sucesso!");
     }
 
 }

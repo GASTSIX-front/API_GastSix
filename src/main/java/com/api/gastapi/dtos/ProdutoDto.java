@@ -7,7 +7,6 @@ public record ProdutoDto(
         @NotBlank String descricao,
         @NotBlank String partnumber,
         @NotBlank String setor,
-        String codigoSAP,
-        MultipartFile imagem
+        String codigoSAP
 ) {
 }
