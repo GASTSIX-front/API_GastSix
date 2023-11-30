@@ -24,6 +24,7 @@ public class FornecedorModel implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO) //pra gerar o id de forma automatica;
     @Column(name = "id_fornecedor", nullable = false)//associa ele á coluna do banco de dados(colocar o nome do jeito que está no banco);
     private UUID id;//private é o atributo UUID é o tipo, é necessário fazer o import do UUID;Colocar os atributos de acordo com o banco;
+    private String nome;
     private String cnpj;
     private String email;
     private String inscricao_estadual;
