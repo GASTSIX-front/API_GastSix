@@ -15,10 +15,6 @@ public record FornecedorDto(
         @Email(message = "O email deve estar no formato válido") String email,
         String inscricao_estadual,
         String razao_social,
-        String endereco,
-        String numero,
-        String bairro,
-        String cep
-
+        String endereco
 ) {
 }

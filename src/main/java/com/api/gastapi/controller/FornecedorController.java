@@ -17,6 +17,7 @@ import java.util.UUID;
 
 //notations @RestController @RequestMapping(o endereço que vc vai acessar, como vc se comunica com o controller)
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/fornecedor", produces = {"application/json"})
 public class FornecedorController {
     //fazer a primeira injecão de dependência @Autowired(classe e o nome);fazer o import do Autowired

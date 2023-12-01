@@ -30,7 +30,5 @@ public class FornecedorModel implements Serializable{
     private String inscricao_estadual;
     private String razao_social;
     private String endereco;
-    private String numero;
-    private String bairro;
-    private String cep;
+
 }
