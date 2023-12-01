@@ -18,8 +18,9 @@ import java.util.Date;
 @Table(name = "usuario")
 public class UsuarioModel implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "matricula", nullable = false)
+
     private String matricula;
     private String email;
     private String cpf;
@@ -28,11 +29,12 @@ public class UsuarioModel implements Serializable {
     @JsonIgnore
     private String senha;
 
-    //private TipoModel funcao;
+    private TipoModel funcao;
 
+    @Temporal(TemporalType.DATE)
     private Date data_admissao;
 
-   // private String url_img;
+
 /*
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

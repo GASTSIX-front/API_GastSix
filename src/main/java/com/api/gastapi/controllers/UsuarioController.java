@@ -61,16 +61,18 @@ public class UsuarioController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(novoUsuario));
     }
+
+
         //Criptografa senha
         //String senhaCript = new BCryptPasswordEncoder().encode(usuarioDto.senha());
         //novoUsuario.setSenha(senhaCript);
 
         //return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(novoUsuario));
 
-    /*
+
     @PutMapping("/{idUsuario}")
-    public ResponseEntity<Object> editarUsuario(@PathVariable(value = "idUsuario") UUID id, @RequestBody @Valid UsuarioDto usuarioDto) {
-        Optional<UsuarioModel> usuarioBuscado = usuarioRepository.findById(id);
+    public ResponseEntity<Object> editarUsuario(@PathVariable(value = "idUsuario") String matricula, @RequestBody @Valid UsuarioDto usuarioDto) {
+        Optional<UsuarioModel> usuarioBuscado = usuarioRepository.findById(matricula);
 
         if (usuarioBuscado.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario não encontrado");
@@ -78,21 +80,24 @@ public class UsuarioController {
 
         UsuarioModel usuarioModel = usuarioBuscado.get();
         BeanUtils.copyProperties(usuarioDto, usuarioModel);
+        usuarioModel.setMatricula(matricula);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(usuarioRepository.save(usuarioModel));
     }
-    @DeleteMapping("/{idUsuario}")
-    public ResponseEntity<Object> deletarUsuario(@PathVariable(value = "idUsuario") UUID id){
-        Optional<UsuarioModel> usuarioBuscado = usuarioRepository.findById(id);
 
-        if (usuarioBuscado.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario não encontrado");
-        }
-        usuarioRepository.delete(usuarioBuscado.get());
-        return ResponseEntity.status(HttpStatus.OK).body("Usuario deletado com sucesso!");
-    }
 
-     */
+//    @DeleteMapping("/{idUsuario}")
+//    public ResponseEntity<Object> deletarUsuario(@PathVariable(value = "idUsuario") String matricula){
+//        Optional<UsuarioModel> usuarioBuscado = usuarioRepository.findById(matricula);
+//
+//        if (usuarioBuscado.isEmpty()) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario não encontrado");
+//        }
+//        usuarioRepository.delete(usuarioBuscado.get());
+//        return ResponseEntity.status(HttpStatus.OK).body("Usuario deletado com sucesso!");
+//    }
+
+
 }
 
 

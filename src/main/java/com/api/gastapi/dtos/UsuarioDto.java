@@ -5,13 +5,16 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 public record UsuarioDto(
+        String matricula,
         @NotBlank @Email(message = "O email deve estar no formato válido") String email,
         @NotBlank String cpf,
         @NotBlank String nome,
         @NotBlank String senha,
-        //@NotBlank String funcao,
-        @NotBlank String data_admissao
+        @NotBlank String funcao,
+         Date data_admissao
 
 ) {
 }
