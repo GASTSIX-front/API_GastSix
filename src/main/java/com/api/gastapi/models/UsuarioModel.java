@@ -2,21 +2,28 @@ package com.api.gastapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
+
 import java.io.Serializable;
 import java.io.Serial;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+
 
 @Getter
 @Setter
 @Entity
 @Table(name = "usuario")
-public class UsuarioModel implements Serializable {
+public class UsuarioModel implements Serializable, UserDetails {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
     @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "matricula", nullable = false)
@@ -35,20 +42,20 @@ public class UsuarioModel implements Serializable {
     private Date data_admissao;
 
 
-/*
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (this.tipo_usuario == TipoModel.ADMIN){
+        if (this.funcao == TipoModel.ADMIN){
             return List.of(
                     new SimpleGrantedAuthority("ROLE_ADMIN"),
                     new SimpleGrantedAuthority("ROLE_SUPERVISOR"),
                     new SimpleGrantedAuthority("ROLE_OPERADOR")
             );
-        } else if (this.tipo_usuario == TipoModel.SUPERVISOR) {
+        } else if (this.funcao == TipoModel.SUPERVISOR) {
             return List.of(
                     new SimpleGrantedAuthority("ROLE_SUPERVISOR")
             );
-        } else if (this.tipo_usuario == TipoModel.OPERADOR) {
+        } else if (this.funcao == TipoModel.OPERADOR) {
             return List.of(
                     new SimpleGrantedAuthority("ROLE_OPERADOR")
             );
@@ -85,5 +92,4 @@ public class UsuarioModel implements Serializable {
         return true;
     }
 
- */
 }

@@ -1,5 +1,5 @@
 package com.api.gastapi.dtos;
-//import com.api.gastapi.models.TipoModel;
+import com.api.gastapi.models.TipoModel;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

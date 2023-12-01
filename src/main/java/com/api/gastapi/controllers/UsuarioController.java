@@ -3,7 +3,6 @@ package com.api.gastapi.controllers;
 import com.api.gastapi.dtos.UsuarioDto;
 import com.api.gastapi.models.UsuarioModel;
 import com.api.gastapi.repositories.UsuarioRepository;
-import com.api.gastapi.services.FileUploadService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -12,21 +11,17 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/usuarios", produces = {"application/json"})
 public class UsuarioController {
     @Autowired
     UsuarioRepository usuarioRepository;
-
-    @Autowired
-    FileUploadService fileUploadService;
 
     @GetMapping
     public ResponseEntity<List<UsuarioModel>> listarUsuarios() {
@@ -51,7 +46,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "201", description = "Cadastro foi efetuado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Paramatros inválidos")
     })
-    public ResponseEntity<Object> criarUsuario(@RequestBody @Valid UsuarioDto usuarioDto){
+    public ResponseEntity<Object> criarUsuario(@RequestBody @Valid UsuarioDto usuarioDto) {
         if (usuarioRepository.findByEmail(usuarioDto.email()) != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email já cadastrado no sistema");
         }
@@ -59,15 +54,15 @@ public class UsuarioController {
         UsuarioModel novoUsuario = new UsuarioModel();
         BeanUtils.copyProperties(usuarioDto, novoUsuario);
 
+
+
+    //Criptografa senha
+    String senhaCript = new BCryptPasswordEncoder().encode(usuarioDto.senha());
+        novoUsuario.setSenha(senhaCript);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(novoUsuario));
-    }
 
-
-        //Criptografa senha
-        //String senhaCript = new BCryptPasswordEncoder().encode(usuarioDto.senha());
-        //novoUsuario.setSenha(senhaCript);
-
-        //return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(novoUsuario));
+}
 
 
     @PutMapping("/{idUsuario}")

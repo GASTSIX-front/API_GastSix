@@ -1,4 +1,4 @@
-/*
+
 package com.api.gastapi.services;
 
 import com.api.gastapi.repositories.UsuarioRepository;
@@ -23,6 +23,3 @@ public class AuthService implements UserDetailsService {
         return (UserDetails) usuario;
     }
 }
-
-
- */
