@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/usuarios", produces = {"application/json"})
 public class UsuarioController {
     @Autowired
