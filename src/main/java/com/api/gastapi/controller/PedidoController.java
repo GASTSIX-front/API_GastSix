@@ -19,6 +19,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/pedido")
 public class PedidoController {
     @Autowired

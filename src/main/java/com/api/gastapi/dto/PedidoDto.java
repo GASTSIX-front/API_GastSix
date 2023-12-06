@@ -4,8 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 
 public record PedidoDto(
         String observacoes,
-        String usuario_operador,
-        String usuario_supervisor,
+        @NotBlank String usuario_operador,
+        @NotBlank String usuario_supervisor,
         String setor
 
 ) {
