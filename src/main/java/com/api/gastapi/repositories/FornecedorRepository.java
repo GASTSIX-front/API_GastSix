@@ -1,6 +1,6 @@
-package com.api.gastapi.repository;
+package com.api.gastapi.repositories;
 
-import com.api.gastapi.model.FornecedorModel;
+import com.api.gastapi.models.FornecedorModel;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;

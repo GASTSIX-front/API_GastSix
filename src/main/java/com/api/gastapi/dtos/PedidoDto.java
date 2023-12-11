@@ -1,4 +1,4 @@
-package com.api.gastapi.dto;
+package com.api.gastapi.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 

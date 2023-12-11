@@ -1,4 +1,4 @@
-package com.api.gastapi.model;
+package com.api.gastapi.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package com.api.gastapi.repository;
+package com.api.gastapi.repositories;
 
-import com.api.gastapi.model.PedidoModel;
+import com.api.gastapi.models.PedidoModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

@@ -1,7 +1,7 @@
-package com.api.gastapi.model;
+package com.api.gastapi.models;
 
-import com.api.gastapi.dto.PedidoAtualizacaoDto;
-import com.api.gastapi.dto.PedidoDto;
+import com.api.gastapi.dtos.PedidoAtualizacaoDto;
+import com.api.gastapi.dtos.PedidoDto;
 import jakarta.persistence.*;
 import lombok.*;
 

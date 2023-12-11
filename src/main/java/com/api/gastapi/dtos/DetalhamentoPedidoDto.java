@@ -1,6 +1,6 @@
-package com.api.gastapi.dto;
+package com.api.gastapi.dtos;
 
-import com.api.gastapi.model.PedidoModel;
+import com.api.gastapi.models.PedidoModel;
 
 public record DetalhamentoPedidoDto(
         String observacoes,

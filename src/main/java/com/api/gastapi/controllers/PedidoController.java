@@ -1,11 +1,11 @@
-package com.api.gastapi.controller;
+package com.api.gastapi.controllers;
 
-import com.api.gastapi.dto.DetalhamentoPedidoDto;
-import com.api.gastapi.dto.PedidoAtualizacaoDto;
-import com.api.gastapi.dto.PedidoDto;
-import com.api.gastapi.dto.PedidoListagemDto;
-import com.api.gastapi.model.PedidoModel;
-import com.api.gastapi.repository.PedidoRepository;
+import com.api.gastapi.dtos.DetalhamentoPedidoDto;
+import com.api.gastapi.dtos.PedidoAtualizacaoDto;
+import com.api.gastapi.dtos.PedidoDto;
+import com.api.gastapi.dtos.PedidoListagemDto;
+import com.api.gastapi.models.PedidoModel;
+import com.api.gastapi.repositories.PedidoRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/pedido")
+@RequestMapping(value = "/pedido", produces = {"application/json"})
 public class PedidoController {
     @Autowired
     private PedidoRepository repository;

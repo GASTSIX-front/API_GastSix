@@ -1,11 +1,8 @@
-package com.api.gastapi.controller;
+package com.api.gastapi.controllers;
 
-import com.api.gastapi.dto.FornecedorDto;
-import com.api.gastapi.model.FornecedorModel;
-import com.api.gastapi.repository.FornecedorRepository;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import com.api.gastapi.dtos.FornecedorDto;
+import com.api.gastapi.models.FornecedorModel;
+import com.api.gastapi.repositories.FornecedorRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
