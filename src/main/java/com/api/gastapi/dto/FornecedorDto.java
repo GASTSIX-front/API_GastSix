@@ -2,22 +2,19 @@ package com.api.gastapi.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import org.springframework.web.multipart.MultipartFile;
 
-public record FornecedorDto<TipoModel>(
-        @NotBlank String cnpj,
+public record FornecedorDto(
+        @NotBlank
+        String nome,
+        @NotBlank
+        String cnpj,
 
-        @Email(message = "O email deve estar no formato válido") String email,
+        @Email(message = "O email deve estar no formato válido")
+        @NotBlank
+        String email,
 
-        String inscrição_estadual,
+        String inscricao_estadual,
         String razao_social,
-        String endereco,
-        String numero,
-        String bairro,
-        String cep,
-
-        TipoModel tipo_fornecedor,
-
-        MultipartFile imagem
+        String endereco
 ) {
 }
