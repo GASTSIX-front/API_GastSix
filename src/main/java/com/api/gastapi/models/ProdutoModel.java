@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -26,4 +27,9 @@ public class ProdutoModel implements Serializable {
     private String setor;
     private String codigoSAP;
 //    private String url_img;
+
+    @OneToMany(mappedBy = "produto")
+    Set<PedidoProdutoModel> pedidoProduto;
+
+
 }

@@ -5,6 +5,7 @@ import com.api.gastapi.dtos.PedidoDto;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Table(name = "pedido")
@@ -17,13 +18,14 @@ public class PedidoModel {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id_pedido;
     private String observacoes;
-    private String usuario_operador;
     private String usuario_supervisor;
     private String setor;
 
+    @OneToMany(mappedBy = "pedido")
+    Set<PedidoProdutoModel> pedidoProduto;
+
     public PedidoModel(PedidoDto dados){
         this.observacoes = dados.observacoes();
-        this.usuario_operador = dados.usuario_operador();
         this.usuario_supervisor = dados.usuario_supervisor();
         this.setor = dados.setor();
     }
@@ -36,4 +38,5 @@ public class PedidoModel {
             this.setor = dados.setor();
         }
     }
+
 }

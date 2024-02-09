@@ -14,7 +14,7 @@ public record UsuarioDto(
         @NotBlank String nome,
         @NotBlank String senha,
         @NotBlank String funcao,
-         Date data_admissao
+        Date data_admissao
 
 ) {
 }
