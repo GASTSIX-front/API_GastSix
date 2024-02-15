@@ -28,6 +28,7 @@ public class ProdutoModel implements Serializable {
     private String codigoSAP;
 //    private String url_img;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "produto")
     Set<PedidoProdutoModel> pedidoProduto;
 
